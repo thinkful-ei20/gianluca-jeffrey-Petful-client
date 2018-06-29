@@ -1,9 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
 import Dashboard from './Dashboard';
-import registerServiceWorker from './registerServiceWorker';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './rootReducer';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { Provider } from 'react-redux';
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
 
 let cat = {
   imageURL: 'https://assets3.thrillist.com/v1/image/2622128/size/tmg-slideshow_l.jpg',
@@ -25,5 +33,9 @@ let dog = {
   story: 'He has an eating disorder'
 };
 
-ReactDOM.render(<Dashboard catToAdopt={cat} dogToAdopt={dog} />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(
+  <Provider store={store}>
+    <Dashboard catToAdopt={cat} dogToAdopt={dog} />
+  </Provider>,
+  document.getElementById('root')
+);
