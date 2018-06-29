@@ -1,1 +1,3 @@
-'{"extends":"reat-app"}' 
+{
+  "extends": "react-app"
+}
