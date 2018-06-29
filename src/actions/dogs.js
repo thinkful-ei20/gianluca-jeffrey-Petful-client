@@ -1,4 +1,4 @@
-// import { API_BASE_URL } from '../config';
+import { API_BASE_URL } from '../config';
 
 export const FETCH_DOG_REQUEST = 'FETCH_DOG_REQUEST';
 export const fetchDogRequest = () => ({
@@ -19,8 +19,7 @@ export const fetchDogError = error => ({
 
 export const fetchDog = () => dispatch => {
   dispatch(fetchDogRequest());
-  // fetch(`${API_BASE_URL}/items`)
-  fetch('http://localhost:8080/api/dogs')
+  fetch(`${API_BASE_URL}/dogs`)
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);

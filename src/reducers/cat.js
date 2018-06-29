@@ -13,7 +13,7 @@ export default function cat(state = initialState, action) {
         ...state,
         loading: false,
         error: null,
-        cat: action.cat
+        data: action.cat
       }
     default: return state;
   }

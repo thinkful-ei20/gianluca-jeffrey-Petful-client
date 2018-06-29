@@ -1,4 +1,4 @@
-// import { API_BASE_URL } from '../config';
+import { API_BASE_URL } from '../config';
 
 export const FETCH_CAT_REQUEST = 'FETCH_CAT_REQUEST';
 export const fetchCatRequest = () => ({
@@ -19,8 +19,7 @@ export const fetchCatError = error => ({
 
 export const fetchCat = () => dispatch => {
   dispatch(fetchCatRequest());
-  // fetch(`${API_BASE_URL}/items`)
-  fetch('http://localhost:8080/api/cats')
+  fetch(`${API_BASE_URL}/cats`)
     .then(res => {
       if (!res.ok) {
         return Promise.reject(res.statusText);

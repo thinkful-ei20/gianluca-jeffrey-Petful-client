@@ -13,7 +13,7 @@ export default function dog(state = initialState, action) {
         ...state,
         loading: false,
         error: null,
-        dog: action.dog
+        data: action.dog
       }
     default: return state;
   }

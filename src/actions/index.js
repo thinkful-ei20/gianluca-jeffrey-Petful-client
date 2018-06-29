@@ -1,5 +1,5 @@
-import * as cats from './cat';
-import * as dogs from './dog';
+import * as cats from './cats';
+import * as dogs from './dogs';
 
 export { cats }
 export { dogs }

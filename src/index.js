@@ -32,7 +32,8 @@ let dog = {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Dashboard catToAdopt={cat} dogToAdopt={dog} />
+    {/* <Dashboard catToAdopt={cat} dogToAdopt={dog} /> */}
+    <Dashboard />
   </Provider>,
   document.getElementById('root')
 );
