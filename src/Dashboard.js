@@ -12,22 +12,18 @@ export class Dashboard extends React.Component {
   }
 
   handleAdoptCat() {
-    console.log(`'handleAdoptCat' ran`);
-    cats.adoptCat();
-    // this.props.unloadCat();
+    this.props.unloadCat();
   }
 
   handleAdoptDog() {
-    console.log(`'handleAdoptDog' ran`);
-    dogs.adoptDog();
-    // this.props.unloadDog();
+    this.props.unloadDog();
   }
 
   render() {
     return (
       <div>
-        <Pet petToAdopt={this.props.catToAdopt} onAdoptPet={this.handleAdoptCat} />
-        <Pet petToAdopt={this.props.dogToAdopt} onAdoptPet={this.handleAdoptDog} />
+        <Pet petToAdopt={this.props.catToAdopt} onAdoptPet={this.handleAdoptCat.bind(this)} />
+        <Pet petToAdopt={this.props.dogToAdopt} onAdoptPet={this.handleAdoptDog.bind(this)} />
       </div>
     );
   }
@@ -40,9 +36,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadCat: () => dispatch(cats.fetchCat()),
-  // unloadCat: () => dispatch(cats.adoptCat()),
+  unloadCat: () => dispatch(cats.adoptCat()),
   loadDog: () => dispatch(dogs.fetchDog()),
-  // unloadDog: () => dispatch(dogs.adoptDog())
+  unloadDog: () => dispatch(dogs.adoptDog())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
