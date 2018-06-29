@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { cats, dogs } from './actions';
+
 import Pet from './components/Pet';
 
 export class Dashboard extends React.Component {
@@ -9,15 +11,23 @@ export class Dashboard extends React.Component {
     this.props.loadDog();
   }
 
-  handleAdoptPet() {
-    console.log(`'handleAdoptPet' ran`);
+  handleAdoptCat() {
+    console.log(`'handleAdoptCat' ran`);
+    cats.adoptCat();
+    // this.props.unloadCat();
+  }
+
+  handleAdoptDog() {
+    console.log(`'handleAdoptDog' ran`);
+    dogs.adoptDog();
+    // this.props.unloadDog();
   }
 
   render() {
     return (
       <div>
-        <Pet petToAdopt={this.props.catToAdopt} onAdoptPet={this.handleAdoptPet} />
-        <Pet petToAdopt={this.props.dogToAdopt} onAdoptPet={this.handleAdoptPet} />
+        <Pet petToAdopt={this.props.catToAdopt} onAdoptPet={this.handleAdoptCat} />
+        <Pet petToAdopt={this.props.dogToAdopt} onAdoptPet={this.handleAdoptDog} />
       </div>
     );
   }
@@ -30,7 +40,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadCat: () => dispatch(cats.fetchCat()),
-  loadDog: () => dispatch(dogs.fetchDog())
+  // unloadCat: () => dispatch(cats.adoptCat()),
+  loadDog: () => dispatch(dogs.fetchDog()),
+  // unloadDog: () => dispatch(dogs.adoptDog())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

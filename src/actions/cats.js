@@ -33,3 +33,38 @@ export const fetchCat = () => dispatch => {
       dispatch(fetchCatError(error));
     });
 };
+
+
+export const ADOPT_CAT_REQUEST = 'ADOPT_CAT_REQUEST';
+export const adoptCatRequest = () => ({
+  type: ADOPT_CAT_REQUEST
+});
+
+export const ADOPT_CAT_SUCCESS = 'ADOPT_CAT_SUCCESS';
+export const adoptCatSuccess = () => ({
+  type: ADOPT_CAT_SUCCESS,
+});
+
+export const ADOPT_CAT_ERROR = 'ADOPT_CAT_ERROR';
+export const adoptCatError = error => ({
+  type: ADOPT_CAT_ERROR,
+  error
+});
+
+export const adoptCat = () => dispatch => {
+  dispatch(adoptCatRequest());
+  fetch(`${API_BASE_URL}/cats`, { method: 'DELETE' })
+    .then(res => {
+      if (!res.ok) {
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(cat => {
+      dispatch(adoptCatSuccess());
+      dispatch(fetchCat());
+    })
+    .catch(error => {
+      dispatch(adoptCatError(error));
+    });
+};
